@@ -1,0 +1,215 @@
+@Parking.Management.Api_HostAddress = http://localhost:5041
+
+### Webhook - ENTRY Event (Entrada do veículo)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "ABC1234",
+  "entry_time": "2025-11-04T10:00:00Z",
+  "event_type": "ENTRY"
+}
+
+###
+
+### Webhook - PARKED Event (Vaga atribuída - Setor A)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "ABC1234",
+  "lat": -23.561684,
+  "lng": -46.655981,
+  "event_type": "PARKED"
+}
+
+###
+
+### Webhook - EXIT Event (Saída após 2h30min - deve cobrar 2 horas)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "ABC1234",
+  "exit_time": "2025-11-04T12:30:00Z",
+  "event_type": "EXIT"
+}
+
+###
+
+### Webhook - ENTRY Event (Segundo veículo - Setor B)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "XYZ5678",
+  "entry_time": "2025-11-04T11:00:00Z",
+  "event_type": "ENTRY"
+}
+
+###
+
+### Webhook - PARKED Event (Segundo veículo - Setor B)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "XYZ5678",
+  "lat": -23.560684,
+  "lng": -46.654981,
+  "event_type": "PARKED"
+}
+
+###
+
+### Webhook - EXIT Event (Segundo veículo após 25 min - GRÁTIS)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "XYZ5678",
+  "exit_time": "2025-11-04T11:25:00Z",
+  "event_type": "EXIT"
+}
+
+###
+
+### Webhook - ENTRY Event (Terceiro veículo - Setor C)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "DEF9012",
+  "entry_time": "2025-11-04T14:00:00Z",
+  "event_type": "ENTRY"
+}
+
+###
+
+### Webhook - PARKED Event (Terceiro veículo - Setor C)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "DEF9012",
+  "lat": -23.559284,
+  "lng": -46.653980999999995,
+  "event_type": "PARKED"
+}
+
+###
+
+### Webhook - EXIT Event (Terceiro veículo após 3h45min)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "DEF9012",
+  "exit_time": "2025-11-04T17:45:00Z",
+  "event_type": "EXIT"
+}
+
+###
+
+### Revenue - Consultar receita do Setor A para hoje
+GET {{Parking.Management.Api_HostAddress}}/revenue?sector=A&date=2025-11-04
+Accept: application/json
+
+###
+
+### Revenue - Consultar receita do Setor B para hoje
+GET {{Parking.Management.Api_HostAddress}}/revenue?sector=B&date=2025-11-04
+Accept: application/json
+
+###
+
+### Revenue - Consultar receita do Setor C para hoje
+GET {{Parking.Management.Api_HostAddress}}/revenue?sector=C&date=2025-11-04
+Accept: application/json
+
+###
+
+### Revenue - Consultar receita de data sem movimentação
+GET {{Parking.Management.Api_HostAddress}}/revenue?sector=A&date=2025-11-03
+Accept: application/json
+
+###
+
+### Webhook - Teste de erro: Placa vazia
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "",
+  "entry_time": "2025-11-04T10:00:00Z",
+  "event_type": "ENTRY"
+}
+
+###
+
+### Webhook - Teste de erro: Event type inválido
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "TEST123",
+  "entry_time": "2025-11-04T10:00:00Z",
+  "event_type": "INVALID"
+}
+
+###
+
+### Webhook - Teste de erro: PARKED sem ENTRY prévio
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "NOENTRY",
+  "lat": -23.561684,
+  "lng": -46.655981,
+  "event_type": "PARKED"
+}
+
+###
+
+### Webhook - Teste de erro: EXIT sem ENTRY prévio
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "NOEXIT",
+  "exit_time": "2025-11-04T12:00:00Z",
+  "event_type": "EXIT"
+}
+
+###
+
+### Webhook - Teste de erro: Entrada duplicada (mesmo veículo já tem sessão ativa)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "GHI3456",
+  "entry_time": "2025-11-04T15:00:00Z",
+  "event_type": "ENTRY"
+}
+
+###
+
+### Webhook - Segunda entrada do mesmo veículo (deve falhar)
+POST {{Parking.Management.Api_HostAddress}}/webhook
+Content-Type: application/json
+
+{
+  "license_plate": "GHI3456",
+  "entry_time": "2025-11-04T15:30:00Z",
+  "event_type": "ENTRY"
+}
+
+###
+
+### Revenue - Teste de erro: Formato de data inválido
+GET {{Parking.Management.Api_HostAddress}}/revenue?sector=A&date=04-11-2025
+Accept: application/json
+
+###
