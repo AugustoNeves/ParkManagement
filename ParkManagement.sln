@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parking.Management.Api", "s
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parking.Management.Api.Tests", "tests\Parking.Management.Api.Tests\Parking.Management.Api.Tests.csproj", "{28EDB269-F039-4ECA-BD75-09668B24178F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parking.Api.UnitTests", "tests\Parking.Api.UnitTests\Parking.Api.UnitTests.csproj", "{28EDB269-F039-4ECA-BD75-09668B24178F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

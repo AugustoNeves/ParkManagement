@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Parking.Management.Api.Data;
 using Parking.Management.Api.Models;
 
-namespace Parking.Management.Api.Tests.Helpers;
+namespace Parking.Api.UnitTests.Helpers;
 
 public static class DbContextHelper
 {

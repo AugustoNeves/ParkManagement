@@ -181,9 +181,6 @@ Content-Type: application/json
 GET http://localhost:5041/revenue?sector=A&date=2025-01-28
 ```
 
-
-
-
 ## Estrutura do Projeto
 
 ```
@@ -215,7 +212,7 @@ ParkManagement/
 │       └── Program.cs
 │
 ├── tests/
-│   └── Parking.Management.Api.Tests/
+│   └── Parking.Api.UnitTests/
 │       ├── Services/
 │       │   └── ParkingServiceTests.cs
 │       └── Helpers/
@@ -228,6 +225,7 @@ ParkManagement/
 ```
 
 ## SQL Queries Úteis
+
 ```sql
 -- Consultar todas as vagas
 SELECT * FROM [ParkManagementDb].[dbo].[GarageSpots]
@@ -237,3 +235,4 @@ SELECT * FROM [ParkManagementDb].[dbo].[GarageSectors]
 
 -- Consultar todas as sessões de estacionamento
 SELECT * FROM [ParkManagementDb].[dbo].[ParkingSessions]
+```

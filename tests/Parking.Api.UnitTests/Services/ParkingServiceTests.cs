@@ -1,16 +1,17 @@
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Parking.Management.Api.Data;
 using Parking.Management.Api.Models;
 using Parking.Management.Api.Services;
-using Parking.Management.Api.Tests.Helpers;
+using Parking.Api.UnitTests.Helpers;
 
-namespace Parking.Management.Api.Tests.Services;
+namespace Parking.Api.UnitTests.Services;
 
 public class ParkingServiceTests : IDisposable
 {
     private readonly Mock<ILogger<ParkingService>> _loggerMock;
-    private Data.ParkingDbContext _context = null!;
+    private ParkingDbContext _context = null!;
     private ParkingService _sut = null!;
 
     public ParkingServiceTests()
